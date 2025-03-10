@@ -9,19 +9,36 @@
     <link rel="stylesheet" href="styles.css">
     <!--<link rel="text/javascript" href="scripts.js">-->
     <script type="text/javascript" src="scripts.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
     <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Cinzel+Decorative&family=Silkscreen&family=Marck+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Indie+Flower&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
 </head>
+<!--[rem(root, "uInv")]
+[initializeUserInventory]
+[addCssAndJsToDocument()]
+[createTabButtons(tabList)]-->
 <body>
 <script>addListeners()</script>
-<div class="main_site">
-  <div class="main_background">
-    <h1>my title</h1>
-    <div class="main_boxshadow"></div>
+<div id="mainSite">
+  <div id="sidebarClickButton" onclick="playSlide()">
+    <div class="material-symbols-rounded">Menu</div>
   </div>
-  <script>setInterval(updateRotation, 5); setInterval(updateHueRotation, 3);</script>
+  <div id="sidebar">
+    <div id="sidebarHeader">
+      <div class="material-symbols-rounded" onclick="playSlide()">Menu</div>
+    </div>
+    <div id="sidebarButtons">
+    </div> 
+  </div>
+  <div id="sidebar_shadow">
+  </div>
+  <div id="content_right" class="content_right">
+  </div>
+  <div id="hotbar" class="hotbar_display"></div>
+  <div id="maincontent_slider"><div>
 </div>
+
+<script>createTabButtons()</script>
 </body>
 </html>

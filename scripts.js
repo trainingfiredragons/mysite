@@ -13,30 +13,156 @@ function changeColorScheme() {
 
 // ?!?!?!? ▼ KEYBINDS ▼ ?!?!?!?
 function addListeners() {
-    if(window.alreadyAddedEnterTriggerListenerForQ === undefined) {
-        window.addEventListener('keydown', function(e){ 
-            if(e.which === 81) { 
-                changeColorScheme()
-            }; 
-        }); window.alreadyAddedEnterTriggerListenerForQ = true;
-    };
-    console.log("ran listeners")
+  if(window.alreadyAddedEnterTriggerListenerForQ === undefined) {
+      window.addEventListener('keydown', function(e){ 
+          if(e.which === 81) { 
+              changeColorScheme()
+          }; 
+      }); window.alreadyAddedEnterTriggerListenerForQ = true;
+  };
+  if(window.alreadyAddedEnterTriggerListenerForE === undefined) {
+    window.addEventListener('keydown', function(e){ 
+        if(e.which === 69) { 
+            playSlide()
+        }; 
+    }); window.alreadyAddedEnterTriggerListenerForE = true;
+  };
+  if(window.alreadyAddedEnterTriggerListenerForR === undefined) {
+    window.addEventListener('keydown', function(e){ 
+        if(e.which === 82) { 
+            changeContent()
+        }; 
+    }); window.alreadyAddedEnterTriggerListenerForR = true;
+  };
+  if(window.alreadyAddedGeneralListeners === undefined) {
+    window.addEventListener('keydown', function(e) {
+      if(e) {
+        //console.log(e.keyCode)
+      }
+    });
+    window.alreadyAddedGeneralListeners = true;
+  };
+  console.log("ran listeners")
 }
 // ?!?!?!? ▲ KEYBINDS ▲ ?!?!?!?
 
-// x ▼ x ▼ x
-function updateRotation() {
-    let root = document.documentElement;
-    let currentRotation = parseFloat(getComputedStyle(root).getPropertyValue('--rotation'));
-    root.style.setProperty('--rotation', (currentRotation + 0.5) % 360 + 'deg');
-}
-function updateHueRotation() {
-    let root = document.documentElement;
-    let currentRotation = parseFloat(getComputedStyle(root).getPropertyValue('--hueRotation'));
-    let currentInverseRotation = parseFloat(getComputedStyle(root).getPropertyValue('--inverseHueRotation'));
-    let mRandVal = Math.random()
-    root.style.setProperty('--hueRotation', (currentRotation + 0.5) % 360 + 'deg');
-    root.style.setProperty('--inverseHueRotation', (currentInverseRotation - 0.5) % 360 + 'deg');
-}
+// [][][][ ▼ ARRAYS ▼ ][][][]
+let tabDataList = [
+  { 
+    buttonTitle:"secret",
+    title:"my secret",
+    content:"hi, this is a secret"
+  },
+  {
+    buttonTitle:"main",
+    title:"main title",
+    content:"hi this is my content"
+  }, 
+  {
+    buttonTitle:"Cat",
+    title:"Cat",
+    content:`<afont style="font-family:Luxurious Roman">This is a picture of a cat.&nbsp;&nbsp;Cats are usually very fluffy and make excellent house pets.</afont>`,
+    backgroundImage:"https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x2.jpg"
+  },
+  {
+    buttonTitle:"fishing",
+    title:"fishing",
+    content:`<afont style="font-family:Marck Script">fishing game</afont>`,
+    backgroundImage:"https://i.imgur.com/64c6NnI.jpg",
+  }
+];
+// [][][][ ▲ ARRAYS ▲ ][][][]
 
-// x ▲ x ▲ x
+// <><><>< ▼ RANDOM STUFF ??? ▼ ><><><>
+
+function createTabButtons(tabCollectionList) {
+    if (!tabCollectionList) tabCollectionList = tabDataList;
+    function createDiv(divInfo) {
+      let newDiv = document.createElement("div");
+      newDiv.className = "sidebarButton selectable"
+      newDiv.innerHTML += (divInfo.buttonTitle !== undefined ? divInfo.buttonTitle : (divInfo.title !== undefined ? divInfo.title : 'unknown'))
+      if(newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick === undefined) {
+        newDiv.addEventListener('click', function(e){ 
+          changeContent()
+          setTimeout(() => {
+          document.title = (divInfo.title !== undefined ? divInfo.title : 'unknown');
+          hotbar.innerHTML = (divInfo.content !== undefined ? divInfo.content : 'no page data');
+          content_right.style.backgroundImage = 'url('+(divInfo.backgroundImage !== undefined ? divInfo.backgroundImage : "")+')';
+          }, 300);
+        });
+        newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick = true;
+      };
+      console.log(newDiv)
+      return newDiv
+    }
+    sidebarButtons.innerHTML = ''
+    for (let i of tabCollectionList) {
+      let myDiv = createDiv(i)
+      sidebarButtons.appendChild(myDiv)
+    }
+    createRemovalButton()
+    return ''
+};
+
+function createRemovalButton() {
+    let newDiv = document.createElement('div');
+    newDiv.className = "sideButtonButton selectable";
+    newDiv.innerHTML = 'reset data';
+    if(newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick === undefined) {
+      newDiv.addEventListener('click', function(e){ 
+        console.clear();
+        localStorage.clear();
+        console.log("cleared data")
+      });
+      newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick = true;
+    };
+    sideButtonContentDiv.appendChild(newDiv)
+    return ''
+};
+
+function displayInventoryTab(tabName) {
+  inventoryTabName.classList.remove("currentTab");
+  bestiaryTabName.classList.remove("currentTab");
+  tabName.classList.add("currentTab");
+  main_display_menu.innerHTML = tabName.id
+};
+
+function playSlide() {
+  let sb = document.getElementById("sidebar");
+  let sbs = document.getElementById("sidebar_shadow");
+  if (sb.classList.contains("animation_extendSidebar")) {
+
+    sidebar.classList.remove("animation_extendSidebar");
+    sidebar.classList.add("animation_removeSidebar");
+    sidebar_shadow.classList.remove("animation_extendSidebarDarken");
+    sidebar_shadow.classList.add("animation_removeSidebarDarken");
+
+  } else if (sb.classList.contains("animation_removeSidebar")) {
+    
+    sidebar.classList.remove("animation_removeSidebar");
+    sidebar.classList.add("animation_extendSidebar");
+    sidebar_shadow.classList.remove("animation_removeSidebarDarken");
+    sidebar_shadow.classList.add("animation_extendSidebarDarken");
+    //sidebar_shadow.classList.replace("animation_removeSidebarDarken", "animation_extendSidebarDarken");
+  } else {
+    sidebar.classList.add("animation_extendSidebar");
+    sidebar_shadow.classList.add("animation_extendSidebarDarken");
+  }
+}
+function changeContent() {
+  let msb = document.getElementById("maincontent_slider");
+  if (msb.alreadyAddedAnimationListener === undefined) {
+    maincontent_slider.addEventListener('animationend', () => {
+      console.log('animation ended')
+      maincontent_slider.classList.remove("animation_mainContentSlide");
+    });
+    maincontent_slider.alreadyAddedAnimationListener = true;
+  }
+  if (msb.classList.contains("animation_mainContentSlide")) {
+    console.log('wait')
+  } else {
+    maincontent_slider.classList.add("animation_mainContentSlide")
+  }
+  console.log('content');
+}
+// <><><>< ▲ RANDOM STUFF ??? ▲ ><><><>
