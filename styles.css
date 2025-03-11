@@ -153,7 +153,7 @@ html {
   width: 100vw;
   height: 15vh;
   background: linear-gradient(to right, var(--color-moon), var(--color-steel), var(--color-moon));
-  box-shadow: inset -1px -1px 0px 4px #00ff00;
+  box-shadow: inset -1px -1px 0px 4px var(--color-oilspill);
   padding: 5px;
   font-size: 25px;
   font-family: "Silkscreen";
