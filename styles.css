@@ -152,7 +152,7 @@ html {
 .hotbar_display {
   width: 100vw;
   height: 15vh;
-  background: linear-gradient(to right, var(--color-venerian), var(--color-tarnish), var(--color-venerian));
+  background: linear-gradient(to right, var(--color-moon), var(--color-steel), var(--color-moon));
   box-shadow: inset -1px -1px 0px 4px #00ff00;
   padding: 5px;
   font-size: 25px;
