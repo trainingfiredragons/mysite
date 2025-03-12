@@ -48,26 +48,37 @@ function addListeners() {
 
 // [][][][ ▼ ARRAYS ▼ ][][][]
 let tabDataList = [
-  { 
-    buttonTitle:"secret",
-    title:"my secret",
-    content:"hi, this is a secret"
-  },
   {
     buttonTitle:"main",
     title:"main title",
-    content:"hi this is my content"
+    content:`<br><br><br><afont style="font-family:Indie Flower;">
+    <table>
+      <caption>Keybinds</caption>
+      <tbody>
+        <tr>
+          <td><b>Q:</b> Light/Dark Mode Toggle</td>
+        </tr>
+        <tr>
+          <td><b>E:</b> Quick Access Menu</td>
+        </tr>
+        <tr>
+          <td><b>R:</b> Screen Slider</td>
+        </tr>
+      </tbody>
+    </table>
+    </afont>`,
+    hotbar: `<afont style="font-family: Indie Flower">my caption</afont>`
   }, 
   {
     buttonTitle:"Cat",
     title:"Cat",
-    content:`<afont style="font-family:Luxurious Roman">This is a picture of a cat.&nbsp;&nbsp;Cats are usually very fluffy and make excellent house pets.</afont>`,
+    hotbar: `<afont style="font-family:Luxurious Roman">This is a picture of a cat.&nbsp;&nbsp;Cats are usually very fluffy and make excellent house pets.</afont>`,
     backgroundImage:"https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x2.jpg"
   },
   {
     buttonTitle:"fishing",
     title:"fishing",
-    content:`<afont style="font-family:Marck Script">fishing game</afont>`,
+    hotbar:`<afont style="font-family:Marck Script">fishing game</afont>`,
     backgroundImage:"https://i.imgur.com/64c6NnI.jpg",
   }
 ];
@@ -79,16 +90,14 @@ function createTabButtons(tabCollectionList) {
     if (!tabCollectionList) tabCollectionList = tabDataList;
     function createDiv(divInfo) {
       let newDiv = document.createElement("div");
-      newDiv.className = "sidebarButton selectable"
+      newDiv.className = "sidebarButton interfaceButton unselectable"
       newDiv.innerHTML += (divInfo.buttonTitle !== undefined ? divInfo.buttonTitle : (divInfo.title !== undefined ? divInfo.title : 'unknown'))
       if(newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick === undefined) {
         newDiv.addEventListener('click', function(e){ 
           changeContent()
           setTimeout(() => {
-          document.title = (divInfo.title !== undefined ? divInfo.title : 'unknown');
-          hotbar.innerHTML = (divInfo.content !== undefined ? divInfo.content : 'no page data');
-          content_right.style.backgroundImage = 'url('+(divInfo.backgroundImage !== undefined ? divInfo.backgroundImage : "")+')';
-          }, 300);
+            setContent(divInfo)
+          }, 299);
         });
         newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick = true;
       };
@@ -99,26 +108,16 @@ function createTabButtons(tabCollectionList) {
     for (let i of tabCollectionList) {
       let myDiv = createDiv(i)
       sidebarButtons.appendChild(myDiv)
-    }
-    createRemovalButton()
-    return ''
-};
-
-function createRemovalButton() {
-    let newDiv = document.createElement('div');
-    newDiv.className = "sideButtonButton selectable";
-    newDiv.innerHTML = 'reset data';
-    if(newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick === undefined) {
-      newDiv.addEventListener('click', function(e){ 
-        console.clear();
-        localStorage.clear();
-        console.log("cleared data")
-      });
-      newDiv.alreadyAddedEventTriggerListenerForDocumentMouseClick = true;
     };
-    sideButtonContentDiv.appendChild(newDiv)
+    setContent(tabCollectionList[0])
     return ''
 };
+function setContent(contentData) {
+  document.title = (contentData.title !== undefined ? contentData.title : 'unknown');
+  hotbar.innerHTML = (contentData.hotbar !== undefined ? contentData.hotbar : 'no page data');
+  content_right.style.backgroundImage = 'url('+(contentData.backgroundImage !== undefined ? contentData.backgroundImage : "")+')';
+  content_right.innerHTML = (contentData.content !== undefined ? contentData.content : 'my words');
+}
 
 function displayInventoryTab(tabName) {
   inventoryTabName.classList.remove("currentTab");

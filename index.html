@@ -21,13 +21,9 @@
 <body>
 <script>addListeners()</script>
 <div id="mainSite">
-  <div id="sidebarClickButton" onclick="playSlide()">
-    <div class="material-symbols-rounded">Menu</div>
-  </div>
+    <!--<span class="material-symbols-rounded size-48">Menu</span>-->
+    <div id="navigationButton" class="interfaceButton" onclick="playSlide()">Navigation</div>
   <div id="sidebar">
-    <div id="sidebarHeader">
-      <div class="material-symbols-rounded" onclick="playSlide()">Menu</div>
-    </div>
     <div id="sidebarButtons">
     </div> 
   </div>
@@ -35,7 +31,10 @@
   </div>
   <div id="content_right" class="content_right">
   </div>
-  <div id="hotbar" class="hotbar_display"></div>
+  <div class="hotbar_display">
+    <div id="hotbar">
+    </div>
+  </div>
   <div id="maincontent_slider"><div>
 </div>
 

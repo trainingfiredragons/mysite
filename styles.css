@@ -52,7 +52,7 @@ html {
   width: 100vw;
   height: 100vh;
   background-color: var(--color-absolute);
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
   overflow-y: hidden;
 }
 #sidebar {
@@ -67,7 +67,9 @@ html {
   justify-content: left;
   z-index: 6;
   margin: 0px;
+  padding-top: 33px;
 }
+
 #sidebar_shadow {
   background: linear-gradient(to right, var(--color-tarnish), #00000000);
   backdrop-filter: blur(5px) grayscale(100%);
@@ -91,8 +93,29 @@ html {
   z-index: 4;
   margin: 0px;
 }
-#sidebarClickButton {
+
+#navigationButton {
+  font-family: Silkscreen;
+  top: 0;
+  left: 0;
   position: absolute;
+  cursor: pointer;
+  z-index: 7;
+  padding: 2px 9vw 2px 5px;
+}
+
+.interfaceButton {
+  background-color: var(--color-moon);
+  border: 4px solid var(--color-oilspill);
+  transition: 0.1s;
+  border-radius: 0px 0px 10px 0px;
+  cursor: pointer;
+  font-family: Silkscreen;
+}
+.interfaceButton:hover {
+  transition: 0.1s;
+  border: 4px solid var(--color-tarnish);
+  background-color: var(--color-silver);
 }
   /* ▲ ELEMENTS ▲ */
 
@@ -111,10 +134,10 @@ html {
   -ms-user-select: text;
 }
 .material-symbols-rounded {
-  font-family: 'Material Symbols Outlined';
+  font-family: 'Material Symbols Rounded';
   font-weight: normal;
   font-style: normal;
-  font-size: 480px;  /* Preferred icon size */
+  font-size: 30px;  /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -124,23 +147,22 @@ html {
   direction: ltr;
 }
 
+span.size-48 {
+  font-size: 48px;
+  font-variation-settings: 'OPSZ' 48;
+}
+
 .sidebarButton {
   width: 80%;
   height: 100%;
-  background-color: var(--color-moon);
-  border: 4px solid var(--color-oilspill);
-  transition: 0.1s;
   margin: 4px;
   margin-left: 10px;
-  padding-left: 20px;
+  padding: 1px 0px 1px 20px;
   border-radius: 0px 0px 10px 0px;
   font-family: "Silkscreen";
 }
 .sidebarButton:hover {
   width: 100%;
-  transition: 0.1s;
-  border: 4px solid var(--color-tarnish);
-  background-color: var(--color-silver);
 }
 .content_right {
   background-repeat: no-repeat;
@@ -150,13 +172,19 @@ html {
   display: inline-block;
 }
 .hotbar_display {
-  width: 100vw;
+  width: 100%;
   height: 15vh;
   background: linear-gradient(to right, var(--color-moon), var(--color-steel), var(--color-moon));
-  box-shadow: inset -1px -1px 0px 4px var(--color-oilspill);
-  padding: 5px;
+  box-shadow: 
+    inset 6px 0px 0px var(--color-oilspill),
+    inset -6px 0px 0px var(--color-oilspill);
   font-size: 25px;
   font-family: "Silkscreen";
+}
+#hotbar {
+  width: auto;
+  margin: 10px;
+  height: calc(15vh - 13px);
 }
   /* ▲ CLASSES ▲ */
 
