@@ -72,13 +72,13 @@ let tabDataList = [
   {
     buttonTitle:"Cat",
     title:"Cat",
-    hotbar: `<afont style="font-family:Luxurious Roman">This is a picture of a cat.&nbsp;&nbsp;Cats are usually very fluffy and make excellent house pets.</afont>`,
+    hotbar: `<afont style="font-family:Indie Flower">This is a picture of a cat.&nbsp;&nbsp;Cats are usually very fluffy and make excellent house pets.</afont>`,
     backgroundImage:"https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_3x2.jpg"
   },
   {
-    buttonTitle:"fishing",
-    title:"fishing",
-    hotbar:`<afont style="font-family:Marck Script">fishing game</afont>`,
+    buttonTitle:"Mountains",
+    title:"Mountains",
+    hotbar:`<afont style="font-family:Marck Script">A picture of the mountains.</afont>`,
     backgroundImage:"https://i.imgur.com/64c6NnI.jpg",
   }
 ];
